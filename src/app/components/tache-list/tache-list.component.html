@@ -1,0 +1,35 @@
+<div class="container mt-4">
+    <h2>Task List</h2>
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+    <a routerLink="/add-tache" class="btn btn-primary mb-3">Add Task</a>
+    <a routerLink="/calcul-montant" class="btn btn-info mb-3">Calculate New Inscription Amounts</a>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Date</th>
+          <th>Duration (hours)</th>
+          <th>Hourly Rate</th>
+          <th>Type</th>
+          <th>Student</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tache of taches">
+          <td>{{ tache.idTache }}</td>
+          <td>{{ tache.dateTache | date:'shortDate' }}</td>
+          <td>{{ tache.duree }}</td>
+          <td>{{ tache.tarifHoraire || 'N/A' }}</td>
+          <td>{{ tache.typeTache }}</td>
+          <td>{{ tache.etudiant ? tache.etudiant.nomEt + ' ' + tache.etudiant.prenomEt : 'Not Assigned' }}</td>
+          <td>
+            <button class="btn btn-warning btn-sm" (click)="editTache(tache.idTache!)">Edit</button>
+            <button class="btn btn-danger btn-sm" (click)="deleteTache(tache.idTache!)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

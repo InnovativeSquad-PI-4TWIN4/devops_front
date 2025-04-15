@@ -1,0 +1,18 @@
+<div class="container mt-4">
+    <h2>New Inscription Amounts</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Student Name</th>
+          <th>New Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let montant of montants">
+          <td>{{ montant.name }}</td>
+          <td>{{ montant.amount | currency:'TND' }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-secondary" (click)="router.navigate(['/taches'])">Back to Tasks</button>
+  </div>
