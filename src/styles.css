@@ -1,0 +1,112 @@
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+  }
+  
+  .table th, .table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  button {
+    margin: 15px;
+  }
+/* Personnalisation du fond du dialog */
+
+.ui-dialog .ui-dialog-content {
+  padding: 20px; /* Ajoute un peu d'espace à l'intérieur du dialog */
+}
+
+.ui-dialog {
+  margin: 50px auto; /* Ajoute une marge autour du dialog */
+}
+.custom-dialog .p-dialog {
+  background-color: #e3f2fd; /* Fond bleu clair */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Ombre légère pour faire ressortir le dialog */
+  border-radius: 10px; /* Bordure arrondie */
+}
+
+/* Personnalisation du masque d'arrière-plan (overlay) */
+.custom-dialog .p-dialog-mask {
+  background-color: rgba(0, 0, 0, 0.5); /* Fond sombre derrière le dialog pour ajouter du contraste */
+}
+
+/* Titre du dialog */
+.dialog-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1976d2; /* Couleur bleu foncé pour le titre */
+  margin-bottom: 2rem;
+}
+
+/* Espacements et bordures du formulaire */
+.p-field {
+  margin-bottom: 1rem;
+}
+
+/* Personnalisation des champs de texte */
+/* Personnalisation des champs de texte (input) */
+.p-inputtext {
+  border-radius: 15px;  /* Arrondi des coins des champs de saisie */
+  padding: 0.8rem; /* Espacement intérieur pour rendre le texte plus confortable */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre légère pour l'effet de profondeur */
+  width: 100%;  /* Prend toute la largeur disponible */
+}
+
+/* Personnalisation des champs de saisie dans le formulaire */
+.p-field input {
+  border-radius: 15px;  /* Arrondi des champs de saisie */
+  padding: 0.8rem; /* Padding pour les champs de saisie */
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre légère */
+}
+
+/* Pour éviter les bords droits de la classe primeng */
+.p-field input:focus {
+  border: 2px solid #1976d2; /* Met en surbrillance l'input lors du focus avec une bordure bleue */
+}
+
+
+/* Personnalisation du footer du dialog */
+.dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+/* Boutons personnalisés */
+.p-button {
+  border-radius: 30px;  /* Boutons arrondis */
+  padding: 0.5rem 2rem; /* Espacement interne du bouton */
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+/* Effet de survol pour les boutons */
+.p-button:hover {
+  opacity: 0.9;
+}
+
+/* Bouton Annuler - couleur secondaire (gris clair) */
+.p-button-secondary {
+  background-color: #b0bec5;
+  color: white;
+}
+
+/* Bouton Ajouter - couleur primaire (bleu) */
+.p-button-primary {
+  background-color: #1976d2; /* Couleur bleu pour le bouton Ajouter */
+  color: white;
+}
+
+.p-button-primary:hover {
+  background-color: #1565c0; /* Changer la couleur au survol */
+}
+  

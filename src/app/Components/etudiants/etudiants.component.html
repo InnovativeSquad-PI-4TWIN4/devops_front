@@ -1,0 +1,84 @@
+<div class="container">
+  <h2>Liste des étudiants</h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>CIN</th>
+        <th>École</th>
+        <th>Date de Naissance</th>
+        <th>Type</th>
+        <th>Montant Inscription</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let etudiant of etudiants">
+        <td>{{ etudiant.idEtudiant }}</td>
+        <td>{{ etudiant.nomEt }}</td>
+        <td>{{ etudiant.prenomEt }}</td>
+        <td>{{ etudiant.cin }}</td>
+        <td>{{ etudiant.ecole }}</td>
+        <td>{{ etudiant.dateNaissance }}</td>
+        <td>{{ etudiant.typeEtudiant }}</td>
+        <td>{{ etudiant.montantInscription }} TND</td>
+        <td>
+          <button (click)="deleteEtudiant(etudiant.idEtudiant)" class="btn btn-danger">Supprimer</button>
+          <button (click)="upDateEtudiant(etudiant.idEtudiant)" class="btn p-button-success">Modifier</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Bouton pour ouvrir le dialog -->
+  <button pButton type="button" label="Ajouter Étudiant" icon="pi pi-plus" (click)="showAddDialog()"></button>
+
+  <!-- Dialog contenant le formulaire d'ajout d'étudiant -->
+  <p-dialog [(visible)]="displayDialog" [modal]="true" [closable]="false" [responsive]="true" [style]="{width: '50vw'}" class="custom-dialog">
+    <h3 class="dialog-title">{{ isEditMode ? 'Modifier un Étudiant' : 'Ajouter un Étudiant' }}</h3>
+    <form (ngSubmit)="addEtudiant()">
+      <div class="p-fluid">
+        <div class="p-field">
+          <label for="nom">Nom</label>
+          <input id="nom" type="text" pInputText [(ngModel)]="newEtudiant.nomEt" name="nomEt" required />
+        </div>
+        <div class="p-field">
+          <label for="prenom">Prénom</label>
+          <input id="prenom" type="text" pInputText [(ngModel)]="newEtudiant.prenomEt" name="prenomEt" required />
+        </div>
+        <div class="p-field">
+          <label for="cin">CIN</label>
+          <input id="cin" type="number" pInputText [(ngModel)]="newEtudiant.cin" name="cin" required />
+        </div>
+        <div class="p-field">
+          <label for="ecole">École</label>
+          <input id="ecole" type="text" pInputText [(ngModel)]="newEtudiant.ecole" name="ecole" required />
+        </div>
+        <div class="p-field">
+          <label for="dateNaissance">Date de Naissance</label>
+          <input id="dateNaissance" type="date" pInputText [(ngModel)]="newEtudiant.dateNaissance" name="dateNaissance" required />
+        </div>
+        
+        <div class="p-field">
+          <label for="typeEtudiant">Type Étudiant</label>
+          <select id="typeEtudiant" [(ngModel)]="newEtudiant.typeEtudiant" name="typeEtudiant" required>
+            <option *ngFor="let type of typeEtudiantOptions" [ngValue]="type">{{ type }}</option>
+          </select>
+        </div>
+        
+        <div class="p-field">
+          <label for="montant">Montant Inscription</label>
+          <input id="montant" type="number" pInputText [(ngModel)]="newEtudiant.montantInscription" name="montantInscription" required />
+        </div>
+      </div>
+
+      <p-footer class="dialog-footer">
+        <button type="submit" pButton [label]="isEditMode ? 'Modifier' : 'Ajouter'" icon="pi pi-check" class="p-button-success"></button>
+        <button type="button" pButton label="Annuler" icon="pi pi-times" (click)="displayDialog = false" class="p-button-secondary"></button>
+      </p-footer>
+    </form>
+  </p-dialog>
+</div>

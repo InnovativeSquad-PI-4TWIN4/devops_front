@@ -1,0 +1,60 @@
+<div class="container">
+    <h2>Gestion des Universités</h2>
+  
+    <form (ngSubmit)="saveUniversite()" #universiteForm="ngForm">
+      <div>
+        <label for="nomUniversite">Nom :</label>
+        <input
+          type="text"
+          id="nomUniversite"
+          [(ngModel)]="currentUniversite.nomUniversite"
+          name="nomUniversite"
+          required
+        />
+      </div>
+  
+      <div>
+        <label for="adresse">Adresse :</label>
+        <input
+          type="text"
+          id="adresse"
+          [(ngModel)]="currentUniversite.adresse"
+          name="adresse"
+          required
+        />
+      </div>
+  
+      <button type="submit">
+        {{ selectedUniversite ? 'Mettre à jour' : 'Ajouter' }}
+      </button>
+  
+      <button type="button" *ngIf="selectedUniversite" (click)="cancelEdit()">
+        Annuler
+      </button>
+    </form>
+  
+    <hr />
+  
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nom</th>
+          <th>Adresse</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let u of universites">
+          <td>{{ u.idUniversite }}</td>
+          <td>{{ u.nomUniversite }}</td>
+          <td>{{ u.adresse }}</td>
+          <td>
+            <button (click)="editUniversite(u)">Modifier</button>
+            <button (click)="deleteUniversite(u.idUniversite!)">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
