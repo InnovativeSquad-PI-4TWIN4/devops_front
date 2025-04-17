@@ -1,18 +1,20 @@
-<div class="container mt-4">
-    <h2>New Inscription Amounts</h2>
-    <table class="table table-striped">
-      <thead>
+<div class="container py-4">
+  <h2 class="mb-4">💰 New Inscription Amounts</h2>
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover align-middle">
+      <thead class="table-light">
         <tr>
           <th>Student Name</th>
-          <th>New Amount</th>
+          <th class="text-end">Amount</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let montant of montants">
           <td>{{ montant.name }}</td>
-          <td>{{ montant.amount | currency:'TND' }}</td>
+          <td class="text-end fw-bold text-success">{{ montant.amount | currency:'TND' }}</td>
         </tr>
       </tbody>
     </table>
-    <button class="btn btn-secondary" (click)="router.navigate(['/taches'])">Back to Tasks</button>
   </div>
+  <button class="btn btn-outline-secondary mt-3" (click)="router.navigate(['/taches'])">⬅️ Back to Tasks</button>
+</div>

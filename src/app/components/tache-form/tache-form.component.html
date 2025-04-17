@@ -1,37 +1,38 @@
-<div class="container mt-4">
-    <h2>{{ isEditMode ? 'Edit Task' : 'Add Task' }}</h2>
-    <form (ngSubmit)="saveTache()">
-      <div class="mb-3">
-        <label for="dateTache" class="form-label">Task Date</label>
-        <input type="date" class="form-control" id="dateTache" [(ngModel)]="tache.dateTache" name="dateTache" required>
-      </div>
-      <div class="mb-3">
-        <label for="duree" class="form-label">Duration (hours)</label>
-        <input type="number" class="form-control" id="duree" [(ngModel)]="tache.duree" name="duree" required>
-      </div>
-      <div class="mb-3">
-        <label for="tarifHoraire" class="form-label">Hourly Rate</label>
-        <input type="number" class="form-control" id="tarifHoraire" [(ngModel)]="tache.tarifHoraire" name="tarifHoraire">
-      </div>
-      <div class="mb-3">
-        <label for="typeTache" class="form-label">Task Type</label>
-        <select class="form-control" id="typeTache" [(ngModel)]="tache.typeTache" name="typeTache" required>
-          <option value="BRICOLAGE">BRICOLAGE</option>
-          <option value="JARDINAGE">JARDINAGE</option>
-          <option value="MENAGERE">MENAGERE</option>
-          <!-- Replace with actual TypeTache values -->
-        </select>
-      </div>
-      <div class="mb-3">
-        <label for="etudiant" class="form-label">Assign to Student</label>
-        <select class="form-control" id="etudiant" [(ngModel)]="tache.etudiant" name="etudiant">
-          <option [ngValue]="null">None</option>
-          <option *ngFor="let etudiant of etudiants" [ngValue]="etudiant">
-            {{ etudiant.nomEt }} {{ etudiant.prenomEt }} ({{ etudiant.ecole || 'No School' }})
-          </option>
-        </select>
-      </div>
-      <button type="submit" class="btn btn-primary">{{ isEditMode ? 'Update' : 'Add' }} Task</button>
+<div class="container py-4">
+  <h2 class="mb-4">{{ isEditMode ? '✏️ Edit Task' : '➕ Add Task' }}</h2>
+  <form (ngSubmit)="saveTache()" class="card p-4 shadow-sm">
+    <div class="mb-3">
+      <label for="dateTache" class="form-label">Task Date</label>
+      <input type="date" class="form-control" id="dateTache" [(ngModel)]="tache.dateTache" name="dateTache" required>
+    </div>
+    <div class="mb-3">
+      <label for="duree" class="form-label">Duration (hours)</label>
+      <input type="number" class="form-control" id="duree" [(ngModel)]="tache.duree" name="duree" required>
+    </div>
+    <div class="mb-3">
+      <label for="tarifHoraire" class="form-label">Hourly Rate</label>
+      <input type="number" class="form-control" id="tarifHoraire" [(ngModel)]="tache.tarifHoraire" name="tarifHoraire">
+    </div>
+    <div class="mb-3">
+      <label for="typeTache" class="form-label">Task Type</label>
+      <select class="form-select" id="typeTache" [(ngModel)]="tache.typeTache" name="typeTache" required>
+        <option value="BRICOLAGE">BRICOLAGE</option>
+        <option value="JARDINAGE">JARDINAGE</option>
+        <option value="MENAGERE">MENAGERE</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="etudiant" class="form-label">Assign to Student</label>
+      <select class="form-select" id="etudiant" [(ngModel)]="tache.etudiant" name="etudiant">
+        <option [ngValue]="null">None</option>
+        <option *ngFor="let etudiant of etudiants" [ngValue]="etudiant">
+          {{ etudiant.nomEt }} {{ etudiant.prenomEt }} ({{ etudiant.ecole || 'No School' }})
+        </option>
+      </select>
+    </div>
+    <div class="d-flex justify-content-end mt-4">
+      <button type="submit" class="btn btn-success">{{ isEditMode ? 'Update' : 'Add' }}</button>
       <button type="button" class="btn btn-secondary ms-2" (click)="router.navigate(['/taches'])">Cancel</button>
-    </form>
-  </div>
+    </div>
+  </form>
+</div>

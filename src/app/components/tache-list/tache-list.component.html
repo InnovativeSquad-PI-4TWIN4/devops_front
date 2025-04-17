@@ -1,35 +1,44 @@
-<div class="container mt-4">
-    <h2>Task List</h2>
-    <div *ngIf="errorMessage" class="alert alert-danger">
-      {{ errorMessage }}
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">📋 Task List</h2>
+    <div>
+      <a routerLink="/add-tache" class="btn btn-primary me-2">➕ Add Task</a>
+      <a routerLink="/calcul-montant" class="btn btn-outline-info">💰 Calculate Amounts</a>
     </div>
-    <a routerLink="/add-tache" class="btn btn-primary mb-3">Add Task</a>
-    <a routerLink="/calcul-montant" class="btn btn-info mb-3">Calculate New Inscription Amounts</a>
-    <table class="table table-striped">
-      <thead>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+  <div class="table-responsive">
+    <table class="table table-hover align-middle">
+      <thead class="table-dark">
         <tr>
           <th>ID</th>
           <th>Date</th>
-          <th>Duration (hours)</th>
-          <th>Hourly Rate</th>
+          <th>Duration</th>
+          <th>Rate</th>
           <th>Type</th>
           <th>Student</th>
-          <th>Actions</th>
+          <th class="text-center">Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let tache of taches">
           <td>{{ tache.idTache }}</td>
-          <td>{{ tache.dateTache | date:'shortDate' }}</td>
-          <td>{{ tache.duree }}</td>
+          <td>{{ tache.dateTache | date: 'shortDate' }}</td>
+          <td>{{ tache.duree }}h</td>
           <td>{{ tache.tarifHoraire || 'N/A' }}</td>
-          <td>{{ tache.typeTache }}</td>
-          <td>{{ tache.etudiant ? tache.etudiant.nomEt + ' ' + tache.etudiant.prenomEt : 'Not Assigned' }}</td>
+          <td><span class="badge bg-secondary">{{ tache.typeTache }}</span></td>
           <td>
-            <button class="btn btn-warning btn-sm" (click)="editTache(tache.idTache!)">Edit</button>
-            <button class="btn btn-danger btn-sm" (click)="deleteTache(tache.idTache!)">Delete</button>
+            <span *ngIf="tache.etudiant">{{ tache.etudiant.nomEt }} {{ tache.etudiant.prenomEt }}</span>
+            <span *ngIf="!tache.etudiant" class="text-muted">Not Assigned</span>
+          </td>
+          <td class="text-center">
+            <button class="btn btn-outline-warning btn-sm me-1" (click)="editTache(tache.idTache!)">✏️</button>
+            <button class="btn btn-outline-danger btn-sm" (click)="deleteTache(tache.idTache!)">🗑️</button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
+</div>
