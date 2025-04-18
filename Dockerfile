@@ -20,7 +20,7 @@ RUN npm run build --prod
 FROM nginx:alpine
 
 # Copy the built app from the previous stage
-COPY --from=build /app/dist/foyer-angular /usr/share/nginx/html
+COPY --from=build /app/dist/foyer-front /usr/share/nginx/html
 
 # Expose port 80
 EXPOSE 80
