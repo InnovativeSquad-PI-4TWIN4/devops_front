@@ -1,0 +1,47 @@
+<div class="container mt-4">
+    <h2>Gestion des Chambres</h2>
+  
+    <form (ngSubmit)="saveChambre()">
+      <div class="mb-3">
+        <label>Numéro Chambre</label>
+        <input [(ngModel)]="chambreForm.numeroChambre" name="numeroChambre" class="form-control" type="number" required />
+      </div>
+  
+      <div class="mb-3">
+        <label>Type</label>
+        <select [(ngModel)]="chambreForm.typeC" name="typeC" class="form-control">
+          <option value="SIMPLE">Simple</option>
+          <option value="DOUBLE">Double</option>
+          <option value="TRIPLE">Triple</option>
+        </select>
+      </div>
+  
+      <button type="submit" class="btn btn-primary">
+        {{ isEdit ? 'Modifier' : 'Ajouter' }}
+      </button>
+      <button type="button" class="btn btn-secondary ms-2" (click)="resetForm()">Annuler</button>
+    </form>
+  
+    <table class="table table-bordered mt-4">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Numéro</th>
+          <th>Type</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ch of chambres">
+          <td>{{ ch.idChambre }}</td>
+          <td>{{ ch.numeroChambre }}</td>
+          <td>{{ ch.typeC }}</td>
+          <td>
+            <button class="btn btn-warning btn-sm" (click)="editChambre(ch)">Modifier</button>
+            <button class="btn btn-danger btn-sm ms-2" (click)="deleteChambre(ch.idChambre!)">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
