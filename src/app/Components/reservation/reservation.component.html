@@ -1,0 +1,68 @@
+<div class="container mt-4">
+    <h2 class="mb-4 text-primary">Liste des Réservations</h2>
+  
+    <!-- Table des réservations -->
+    <table class="table table-bordered table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Année Universitaire</th>
+          <th>Est Valide</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let res of reservations">
+          <td>{{ res.idReservation }}</td>
+          <td>{{ res.anneeUniversitaire }}</td>
+          <td>
+            <span [ngClass]="{ 'text-success': res.estValid, 'text-danger': !res.estValid }">
+              {{ res.estValid ? 'Oui' : 'Non' }}
+            </span>
+          </td>
+          <td>
+            <button class="btn btn-sm btn-danger" (click)="deleteReservation(res.idReservation!)">
+              <i class="bi bi-trash"></i> Supprimer
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Bouton Ajouter -->
+    <button class="btn btn-success" (click)="showAddDialog()">
+      <i class="bi bi-plus-circle"></i> Ajouter Réservation
+    </button>
+  
+    <!-- Formulaire d'ajout -->
+    <div *ngIf="displayDialog" class="mt-4 card p-4 shadow-sm">
+      <form (ngSubmit)="addReservation()">
+        <div class="mb-3">
+          <label for="anneeUniversitaire" class="form-label">Année universitaire :</label>
+          <input
+            type="date"
+            id="anneeUniversitaire"
+            [(ngModel)]="newReservation.anneeUniversitaire"
+            name="anneeUniversitaire"
+            required
+            class="form-control"
+          />
+        </div>
+  
+        <div class="mb-3 form-check">
+          <input
+            type="checkbox"
+            id="estValid"
+            [(ngModel)]="newReservation.estValid"
+            name="estValid"
+            class="form-check-input"
+          />
+          <label class="form-check-label" for="estValid">Est valide</label>
+        </div>
+  
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <button type="button" class="btn btn-secondary ms-2" (click)="displayDialog = false">Annuler</button>
+      </form>
+    </div>
+  </div>
+  
